@@ -137,7 +137,7 @@ prompt_pure_preprompt_render() {
 	[[ -n ${prompt_pure_git_last_dirty_check_timestamp+x} ]] && git_color=red
 
 	# construct preprompt, beginning with path
-	local preprompt="%F{blue}%~%f"
+	local preprompt="%F{white}%~%f"
 	# git info
 	preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
 	# git pull/push arrows
@@ -248,7 +248,7 @@ prompt_pure_async_git_dirty() {
 		test -z "$(command git status --porcelain --ignore-submodules -unormal)"
 	fi
 
-	(( $? )) && echo "*"
+	(( $? )) && echo "%F{red} ✕%f"
 }
 
 prompt_pure_async_git_fetch() {
@@ -364,7 +364,7 @@ prompt_pure_setup() {
 	[[ $UID -eq 0 ]] && prompt_pure_username=' %F{white}%n%f%F{242}@%m%f'
 
 	# prompt turns red if the previous command didn't exit with 0
-	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
+	PROMPT="%(?.%F{white}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
 }
 
 prompt_pure_setup "$@"
